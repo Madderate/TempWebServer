@@ -81,6 +81,15 @@ def forge():
 # 处理请求
 @app.route('/')
 def index():
-    user = User.query.first()
     environmentQuery = Environment.query.all()
-    return render_template('index.html', user=user, environmentQuery=environmentQuery)
+    return render_template('index.html', environmentQuery=environmentQuery)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    return dict(user=user)
+
