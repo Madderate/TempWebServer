@@ -52,7 +52,7 @@ def forge():
     """Gemerate fake data."""
     db.create_all()
 
-    name = 'user_name'
+    name = 'madderate'
     environmentList = [
         {'temperature': 24, 'humidity': 50, 'luminous_intensity':500, 'air_quality':25},
         {'temperature': 23, 'humidity': 57, 'luminous_intensity':700, 'air_quality':28},
@@ -83,4 +83,4 @@ def forge():
 def index():
     user = User.query.first()
     environmentQuery = Environment.query.all()
-    return render_template('index.html', name=name, environment=environmentQuery)
+    return render_template('index.html', user=user, environmentQuery=environmentQuery)
