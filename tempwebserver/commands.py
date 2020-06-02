@@ -1,4 +1,4 @@
-from tempwebserver import app
+from tempwebserver import app, request
 import json
 import random
 
@@ -47,21 +47,21 @@ def get_air_quality():
     return json.dumps(airQuality)
 
 
-@app.route('/switch?light=<isLit>')
+@app.route('/switch/light', methods=['POST'])
 def control_light(isLit):
     light = {}
-    if isLit is 'true':
+    if request.form.get('is_lit') is 'true':
         light['is_lit'] = False
-    elif isLit is 'false':
+    elif request.form.get('is_lit') is 'false':
         light['is_lit'] = True
     return json.dumps(light)
 
 
-@app.route('/switch?fan=<isFanOn>')
+@app.route('/switch/fan', methods=['POST'])
 def control_fan(isFanOn):
     fan = {}
-    if isFanOn is 'true':
+    if request.form.get('is_fan_on') is 'true':
         fan['is_fan_on'] = False
-    elif isFanOn is 'false':
+    elif request.form.get('is_fan_on') is 'false':
         fan['is_fan_on'] = True
     return json.dumps(fan)
