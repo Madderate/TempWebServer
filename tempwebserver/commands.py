@@ -45,3 +45,23 @@ def get_luminous_intensity():
 def get_air_quality():
     airQuality = {'air_quality': random.randint(5, 200)}
     return json.dumps(airQuality)
+
+
+@app.route('/switch?light=<isLit>')
+def control_light(isLit):
+    light = {}
+    if isLit is 'true':
+        light['is_lit'] = False
+    elif isLit is 'false':
+        light['is_lit'] = True
+    return json.dumps(light)
+
+
+@app.route('/switch?fan=<isFanOn>')
+def control_fan(isFanOn):
+    fan = {}
+    if isFanOn is 'true':
+        fan['is_fan_on'] = False
+    elif isFanOn is 'false':
+        fan['is_fan_on'] = True
+    return json.dumps(fan)
