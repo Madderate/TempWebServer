@@ -48,20 +48,20 @@ def get_air_quality():
 
 
 @app.route('/switch/light', methods=['POST'])
-def control_light(isLit):
+def control_light():
     light = {}
-    if request.form.get('is_lit') is 'true':
+    if request.form.get('is_lit') == 'true':
         light['is_lit'] = False
-    elif request.form.get('is_lit') is 'false':
+    elif request.form.get('is_lit') == 'false':
         light['is_lit'] = True
     return json.dumps(light)
 
 
 @app.route('/switch/fan', methods=['POST'])
-def control_fan(isFanOn):
+def control_fan():
     fan = {}
-    if request.form.get('is_fan_on') is 'true':
+    if request.form.get('is_fan_on') == 'true':
         fan['is_fan_on'] = False
-    elif request.form.get('is_fan_on') is 'false':
+    elif request.form.get('is_fan_on') == 'false':
         fan['is_fan_on'] = True
     return json.dumps(fan)
